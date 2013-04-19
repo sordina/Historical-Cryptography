@@ -14,7 +14,7 @@ import Codec.Encryption.Historical.Caesar.Implementation
 main = putStrLn encrypted
   where
       bidirectional = caesar 13 -- ROT13
-      encrypted     = encrypt caesar "Hello World"
+      encrypted     = encode caesar "Hello World"
 ```
 
 ## Analysis Usage

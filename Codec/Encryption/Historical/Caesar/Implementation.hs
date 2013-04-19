@@ -32,6 +32,7 @@ where
 import Data.Maybe
 import Data.Char
 
+-- Consider using the Lens Library here
 data CeasarInstance = CeasarInstance {
   encode :: String -> String,
   decode :: String -> String
