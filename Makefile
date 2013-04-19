@@ -15,3 +15,7 @@ test:
 	cabal configure --enable-tests
 	cabal build
 	cabal test
+
+install:
+	cabal configure
+	cabal install
