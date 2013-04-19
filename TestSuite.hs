@@ -22,8 +22,3 @@ tests :: [Test]
 tests = [ sanityCheck
         , Caesar.test
         ]
-
--- Notes:
---   import Test.Framework.Providers.HUnit
---   import Test.HUnit hiding (Test)
---   testGroup "cases"      $ zipWith testCase     numbering $ [] ,

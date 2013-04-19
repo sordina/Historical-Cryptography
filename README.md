@@ -52,6 +52,8 @@ To run the test-suite, just call `make test`.
 
 # TODO
 
+Rotate the histogram rather than the cypher-text in the Caesar Analysis.
+
 QuikCheck can cause issues with GHCi. To work around this load files with -
 
     ghci -Wall -package QuickCheck-2.5.1.1 -i. "%"
