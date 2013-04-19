@@ -1,5 +1,7 @@
-{- The Caesar Cypher
- - =================
+{- | The Caesar Cypher
+ -   =================
+ -
+ - http://en.wikipedia.org/wiki/Caesar_cipher
  -
  - Works as a pair of maps from the 26 letters of the English alphabet to an
  - offset rotation of these letters. Work has been done to preserve spaces
