@@ -9,6 +9,8 @@ A library serving two purposes:
 ## Implementation Usage
 
 ```haskell
+import Codec.Encryption.Historical.Caesar.Implementation
+
 main = putStrLn encrypted
   where
       bidirectional = caesar 13 -- ROT13
