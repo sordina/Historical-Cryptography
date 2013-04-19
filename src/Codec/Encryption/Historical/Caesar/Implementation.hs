@@ -17,7 +17,13 @@
  - However, after a certain number of encodings, a string will be decoded.
  -}
 
-module Caesar (caesar, encode, decode, caesar_encode, caesar_decode)
+module Codec.Encryption.Historical.Caesar.Implementation
+  ( caesar
+  , encode
+  , decode
+  , caesar_encode
+  , caesar_decode
+  )
 where
 
 import Data.List
