@@ -63,15 +63,17 @@ prop_histogramDelta s = histogramDelta h h == 0 where h = histogram s
 
 test_crack :: Assertion
 test_crack = do
-  contents <- readFile "Corpus/snow_white_abridged.txt"
+  secret <- readFile "Corpus/snow_white_abridged.txt"
+  corpus <- readFile "Corpus/snow_white_abridged2.txt"
 
   let
-    stripped  = caesar_encode 0 contents
-    histo     = histogram stripped
-    encrypted = caesar_encode 12 stripped
-    decrypted = crack histo encrypted
+    stripped_corpus = caesar_encode 0 corpus
+    stripped_secret = caesar_encode 0 secret
+    histo           = histogram stripped_corpus
+    encrypted       = caesar_encode 12 secret -- Offset of 12 whynot?
+    decrypted       = crack histo encrypted
 
-  when (stripped /= decrypted) $ assertFailure "Failed to decrypt snow_white_abridged.txt"
+  when (stripped_secret /= decrypted) $ assertFailure "Failed to decrypt snow_white_abridged.txt"
 
 -- Helpers
 
