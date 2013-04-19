@@ -20,6 +20,7 @@ library
     Codec.Encryption.Historical.Caesar.Implementation
 
 Test-Suite TestSuite
-    type:          exitcode-stdio-1.0
-    main-is:       src/TestSuite.hs
-    build-depends: base, test-framework, test-framework-quickcheck2
+    type:           exitcode-stdio-1.0
+    main-is:        TestSuite.hs
+    hs-source-dirs: src
+    build-depends:  base, test-framework, test-framework-quickcheck2

@@ -1,24 +1,22 @@
-import Test.Framework (Test)
-import Test.Framework (defaultMain, testGroup)
+-- Framework
+import Test.Framework                       (Test, defaultMain)
 import Test.Framework.Providers.QuickCheck2 (testProperty)
 
-main :: IO () 
+-- Modules
+import qualified Codec.Encryption.Historical.Caesar.Test as Caesar
+
+main :: IO ()
 main = defaultMain tests
 
-ignore :: Functor f => f a -> f () 
+ignore :: Functor f => f a -> f ()
 ignore = fmap (const ())
 
-numbering :: [String]
-numbering = map (("Test " ++) . (show :: Int -> String)) [1..]
-
-dummyProperties :: [Test]
-dummyProperties = zipWith testProperty numbering [ \ a -> (*2) a == ((*2) a :: Int)
-                                                 , \ a -> (*2) a == ((*2) $ a :: Int)
-                                                 -- , \ a -> (*3) a == ((*2) $ a :: Int) -- Failing dummy test
-                                                 ]
+sanityCheck :: Test
+sanityCheck = testProperty "Sanity Check" (\ a -> (*2) a == ((*2) a :: Int))
 
 tests :: [Test]
-tests = [ testGroup "dummyProperties" dummyProperties
+tests = [ sanityCheck
+        , Caesar.test
         ]
 
 -- Notes:

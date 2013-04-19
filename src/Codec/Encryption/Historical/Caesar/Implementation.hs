@@ -28,7 +28,7 @@ module Codec.Encryption.Historical.Caesar.Implementation
   )
 where
 
-import Data.List
+-- import Data.List
 import Data.Maybe
 import Data.Char
 
