@@ -13,8 +13,12 @@
 module Codec.Encryption.Historical.Caesar.Test
   (test) where
 
+-- Normal Libraries
+
 import Data.Char
 import Control.Monad
+
+-- Testing Libraries
 
 import Test.QuickCheck
 import Test.HUnit.Lang
@@ -22,21 +26,22 @@ import Test.Framework.Providers.QuickCheck2
 import Test.Framework.Providers.HUnit
 import Test.Framework  (Test, testGroup)
 
+-- Algoritms
+
 import Codec.Encryption.Historical.Caesar.Implementation
 import Codec.Encryption.Historical.Caesar.Analysis
 
--- Notes:
---   import Test.HUnit hiding (Test)
---   testGroup "cases"      $ zipWith testCase     numbering $ [] ,
-
--- Test List
+-- Test Items
 
 test :: Test
 test = testGroup "Caesar Cipher"
-  [ testProperty "Identity"            prop_identity
-  , testProperty "Encoded Differently" prop_different
-  , testProperty "Histogram Delta"     prop_histogramDelta
-  , testCase     "Cracking the Cypher" test_crack
+  [ testGroup "Implementation"
+      [ testProperty "Identity"            prop_identity
+      , testProperty "Encoded Differently" prop_different
+      , testProperty "Histogram Delta"     prop_histogramDelta
+      ]
+  , testGroup "Analysis"
+      [ testCase "Cracking the Caesar Cypher" test_crack ]
   ]
 
 -- Test Implementation
