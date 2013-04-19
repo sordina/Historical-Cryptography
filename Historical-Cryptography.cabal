@@ -15,7 +15,6 @@ cabal-version:       >=1.8
 
 library
   build-depends:  base ==4.6.*
-  hs-source-dirs: src
   exposed-modules:
     Codec.Encryption.Historical.Caesar.Implementation,
     Codec.Encryption.Historical.Caesar.Analysis
@@ -23,5 +22,4 @@ library
 Test-Suite TestSuite
     type:           exitcode-stdio-1.0
     main-is:        TestSuite.hs
-    hs-source-dirs: src
     build-depends:  base, test-framework, test-framework-quickcheck2, QuickCheck == 2.5.1.1
