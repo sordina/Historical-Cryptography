@@ -73,6 +73,8 @@ test_crack = do
     encrypted       = caesar_encode 12 secret -- Offset of 12 whynot?
     decrypted       = crack histo encrypted
 
+  putStrLn decrypted
+
   when (stripped_secret /= decrypted) $ assertFailure "Failed to decrypt snow_white_abridged.txt"
 
 -- Helpers

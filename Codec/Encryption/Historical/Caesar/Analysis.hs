@@ -20,6 +20,7 @@ import Control.Monad
 -- Main Analysis
 
 -- TODO: Rotate the histogram rather than the cypher-text
+-- TODO: Normalize the histograms
 
 crack :: Histogram Char -> String -> String
 crack h body = head $ sortBy (comparing best) solutions
