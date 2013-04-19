@@ -6,9 +6,19 @@ A library serving two purposes:
 * Historical cryptographic algorithms
 * Algorithms to break the aforementioned
 
+## Implementation Usage
+
+```haskell
+main = putStrLn encrypted
+  where
+      bidirectional = caesar 13 -- ROT13
+      encrypted     = encrypt caesar "Hello World"
+```
+
 ## Analysis Usage
 
 ```haskell
+import Codec.Encryption.Historical.Caesar.Implementation
 import Codec.Encryption.Historical.Caesar.Analysis
 
 main :: IO ()
