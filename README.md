@@ -6,6 +6,24 @@ A library serving two purposes:
 * Historical cryptographic algorithms
 * Algorithms to break the aforementioned
 
+## Analysis Usage
+
+```haskell
+import Codec.Encryption.Historical.Caesar.Analysis
+
+main :: IO ()
+main = do
+  cyper_text <- readFile "super_secret.txt"
+  corpus     <- readFile "snow_white_abridged.txt"
+
+  let
+    stripped_corpus = caesar_encode 0 corpus
+    histo           = histogram stripped_corpus
+    decrypted       = crack histo cyper_text
+
+  print decrypted
+```
+
 ## Tests
 
 To run the test-suite, just call `make test`.
