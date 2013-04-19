@@ -60,6 +60,9 @@ caesar_decode = decode . caesar
 alphabet :: String
 alphabet = ['A'..'Z']
 
+alphalen :: Int
+alphalen = length alphabet
+
 rotate :: Integral n => n -> [a] -> [a]
 rotate offset list = (drop n list) ++ (take n list)
-  where n = fromIntegral offset
+  where n = fromIntegral offset `mod` alphalen
