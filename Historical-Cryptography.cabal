@@ -22,5 +22,4 @@ library
 Test-Suite TestSuite
     type:          exitcode-stdio-1.0
     main-is:       src/TestSuite.hs
-    build-depends: base
-
+    build-depends: base, test-framework, test-framework-quickcheck2
