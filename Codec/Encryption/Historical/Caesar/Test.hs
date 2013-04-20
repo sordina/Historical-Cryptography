@@ -38,6 +38,7 @@ test :: Test
 test = testGroup "Caesar Cipher"
   [ testGroup "Implementation"
       [ testProperty "Identity"            prop_identity
+      , testProperty "No Offest Identity"  prop_no_offset
       , testProperty "Encoded Differently" prop_different
       , testProperty "Histogram Delta"     prop_histogramDelta
       ]
@@ -50,6 +51,9 @@ test = testGroup "Caesar Cipher"
 prop_identity :: Int -> String -> Bool
 prop_identity n s' = s == (caesar_decode n . caesar_encode n) s
   where s = strip s'
+
+prop_no_offset :: Int -> String -> Bool
+prop_no_offset n s' = s == caesar_encode 0 s where s = strip s'
 
 prop_different :: Int -> String -> Property
 prop_different n s' = not (null s)
@@ -74,7 +78,7 @@ test_crack = do
     encrypted       = caesar_encode 12 secret -- Offset of 12 whynot?
     decrypted       = crack histo encrypted
 
-  putStrLn decrypted
+  putStrLn $ take 100 $ decrypted
 
   when (stripped_secret /= decrypted) $ assertFailure "Failed to decrypt snow_white_abridged.txt"
 
