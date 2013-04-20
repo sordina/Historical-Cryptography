@@ -78,7 +78,7 @@ test_crack = do
     encrypted       = caesar_encode 12 secret -- Offset of 12 whynot?
     decrypted       = crack histo encrypted
 
-  putStrLn $ take 100 $ decrypted
+  putStrLn $ take 100 $ decrypted -- Output some cracked cypher text to the log
 
   when (stripped_secret /= decrypted) $ assertFailure "Failed to decrypt snow_white_abridged.txt"
 
