@@ -19,24 +19,26 @@ import Control.Monad
 
 -- Main Analysis
 
--- TODO: Rotate the histogram rather than the cypher-text
+type Histogram a = [(a, Float)]
 
 crack :: Histogram Char -> String -> String
-crack h body = head $ sortBy (comparing best) solutions
+crack h cypher = caesar_decode offset cypher
   where
-    solutions = map (flip caesar_encode body) [0..25]
-    best t    = histogramDelta h (histogram t)
+    offset     = fst $ head $ sortBy (comparing best) rotations
+    best       = histogramDelta (histogram cypher) . snd
+    rotations  = zip [0..25] $ iterate rotate $ sort h
+
+rotate :: [(a,b)] -> [(a,b)]
+rotate l = zip (drop 1 ks ++ take 1 ks) (map snd l) where ks = map fst l
 
 histogramDelta :: (Eq a, Ord a) => Histogram a -> Histogram a -> Float
 histogramDelta a b = result
   where
-    keys   = nub (map fst a ++ map fst b)
+    keys   = map fst a -- Really only need one set since we're after the intersection of keys
     deltas = map (\x -> liftM2 (-) (lookup x a) (lookup x b)) keys
-    result = sum $ map (** (2::Float)) $ catMaybes deltas
+    result = sum $ map (**2) $ catMaybes deltas
 
 -- Helpers
-
-type Histogram a = [(a, Float)]
 
 -- TODO: Improve efficiency
 histogram :: (Eq a, Ord a) => [a] -> Histogram a

@@ -5,6 +5,7 @@
  -
  -   * encrypt-decrypt identity
  -   * effective encryption
+ -   * cypher-text cracking
  -
  -   QuickCheck version causes issues. Run with -
  -     ghci -Wall -XTemplateHaskell -XQuasiQuotes -package QuickCheck-2.5.1.1 -i. "%"
