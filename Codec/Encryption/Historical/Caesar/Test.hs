@@ -11,8 +11,7 @@
  -     ghci -Wall -XTemplateHaskell -XQuasiQuotes -package QuickCheck-2.5.1.1 -i. "%"
  -}
 
-module Codec.Encryption.Historical.Caesar.Test
-  (test) where
+module Codec.Encryption.Historical.Caesar.Test (test) where
 
 -- Normal Libraries
 
