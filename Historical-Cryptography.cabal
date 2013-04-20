@@ -14,7 +14,7 @@ build-type:          Simple
 cabal-version:       >=1.8
 
 library
-  build-depends: base
+  build-depends: base, containers
   exposed-modules:
     Codec.Encryption.Historical.Caesar.Implementation,
     Codec.Encryption.Historical.Caesar.Analysis
@@ -23,6 +23,7 @@ Test-Suite TestSuite
     type:           exitcode-stdio-1.0
     main-is:        TestSuite.hs
     build-depends:  base,
+                    containers,
                     test-framework-hunit,
                     test-framework,
                     test-framework-quickcheck2,

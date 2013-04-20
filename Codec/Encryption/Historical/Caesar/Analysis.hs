@@ -1,4 +1,3 @@
-
 module Codec.Encryption.Historical.Caesar.Analysis
   (
     histogram,
@@ -16,6 +15,8 @@ import Data.Maybe
 import Data.Ord
 import Control.Arrow
 import Control.Monad
+
+import qualified Data.Map as M
 
 -- Main Analysis
 
@@ -38,12 +39,11 @@ histogramDelta a b = result
     deltas = map (\x -> liftM2 (-) (lookup x a) (lookup x b)) keys
     result = sum $ map (**2) $ catMaybes deltas
 
--- Helpers
-
--- TODO: Improve efficiency
 histogram :: (Eq a, Ord a) => [a] -> Histogram a
-histogram x = map (second (/total)) res
-  where
-    pre   = map (head &&& fromIntegral . length) . group . sort
-    res   = pre x
-    total = sum $ map snd $ res
+histogram = normalize . simpleHistogram
+
+normalize :: Ord a => Histogram a -> Histogram a
+normalize h = map (second (/total)) h where total = sum $ map snd $ h
+
+simpleHistogram :: (Eq a, Ord a) => [a] -> Histogram a
+simpleHistogram = M.toList . foldr (M.alter (Just . maybe 1 succ)) M.empty
