@@ -17,6 +17,14 @@ executable crack_caesar
   main-is:           Codec/Encryption/Historical/Caesar/CommandCrack.hs
   build-depends: base, containers
 
+executable encode_caesar
+  main-is:           Codec/Encryption/Historical/Caesar/CommandEncode.hs
+  build-depends: base, containers, safe
+
+executable decode_caesar
+  main-is:           Codec/Encryption/Historical/Caesar/CommandDecode.hs
+  build-depends: base, containers, safe
+
 library
   build-depends: base, containers
   exposed-modules:

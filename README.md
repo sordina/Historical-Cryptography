@@ -6,7 +6,19 @@ A library serving two purposes:
 * Historical cryptographic algorithms
 * Algorithms to break the aforementioned
 
-## Implementation Usage
+## Implementation Encoding Command Line Usage
+
+    cat plain | encode_caesar <offset>
+
+## Implementation Decoding Command Line Usage
+
+    cat plain | encode_caesar <offset> | decode_caesar <offset>
+
+## Analysis Command Line Usage
+
+    cat cypher | crack_caesar
+
+## Implementation Library Usage
 
 ```haskell
 import Codec.Encryption.Historical.Caesar.Implementation
@@ -17,7 +29,7 @@ main = putStrLn encrypted
       encrypted     = encode bidirectional "Hello World"
 ```
 
-## Analysis Usage
+## Analysis Library Usage
 
 ```haskell
 import Codec.Encryption.Historical.Caesar.Implementation
