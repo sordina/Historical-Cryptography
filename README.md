@@ -6,11 +6,11 @@ A library serving two purposes:
 * Historical cryptographic algorithms
 * Algorithms to break the aforementioned
 
-## Implementation Encoding Command Line Usage
+## Encoding Command Line Usage
 
     cat plain | encode_caesar <offset>
 
-## Implementation Decoding Command Line Usage
+## Decoding Command Line Usage
 
     cat plain | encode_caesar <offset> | decode_caesar <offset>
 
