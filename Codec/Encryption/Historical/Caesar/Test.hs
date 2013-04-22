@@ -30,6 +30,7 @@ import Test.Framework  (Test, testGroup)
 
 import Codec.Encryption.Historical.Caesar.Implementation
 import Codec.Encryption.Historical.Caesar.Analysis
+import Codec.Encryption.Historical.Utilities.Histogram
 
 -- Test Items
 
@@ -39,7 +40,6 @@ test = testGroup "Caesar Cipher"
       [ testProperty "Identity"            prop_identity
       , testProperty "No Offest Identity"  prop_no_offset
       , testProperty "Encoded Differently" prop_different
-      , testProperty "Histogram Delta"     prop_histogramDelta
       ]
   , testGroup "Analysis"
       [ testCase "Cracking the Caesar Cypher" test_crack ]
@@ -62,9 +62,6 @@ prop_different n s' = not (null s)
 
 -- Test Analysis
 
-prop_histogramDelta :: String -> Bool
-prop_histogramDelta s = histogramDelta h h == 0 where h = histogram s
-
 test_crack :: Assertion
 test_crack = do
   secret <- readFile "Corpus/snow_white_abridged.txt"
@@ -77,7 +74,7 @@ test_crack = do
     encrypted       = caesar_encode 12 secret -- Offset of 12 whynot?
     decrypted       = crack histo encrypted
 
-  putStrLn $ take 100 $ decrypted -- Output some cracked cypher text to the log
+  putStrLn $ take 30 $ decrypted -- Output some cracked cypher text to the log
 
   when (stripped_secret /= decrypted) $ assertFailure "Failed to decrypt snow_white_abridged.txt"
 

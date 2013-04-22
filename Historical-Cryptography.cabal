@@ -13,29 +13,49 @@ category:            Math
 build-type:          Simple
 cabal-version:       >=1.8
 
+
+executable crack_xor
+  main-is: Codec/Encryption/Historical/XOR/CommandCrack.hs
+  build-depends: base, containers, bytestring, split
+
+executable encode_xor
+  main-is: Codec/Encryption/Historical/XOR/CommandXOR.hs
+  build-depends: base, containers, bytestring, split
+
+executable decode_xor
+  main-is: Codec/Encryption/Historical/XOR/CommandXOR.hs
+  build-depends: base, containers, bytestring, split
+
+
 executable crack_caesar
-  main-is:           Codec/Encryption/Historical/Caesar/CommandCrack.hs
+  main-is: Codec/Encryption/Historical/Caesar/CommandCrack.hs
   build-depends: base, containers
 
 executable encode_caesar
-  main-is:           Codec/Encryption/Historical/Caesar/CommandEncode.hs
+  main-is: Codec/Encryption/Historical/Caesar/CommandEncode.hs
   build-depends: base, containers, safe
 
 executable decode_caesar
-  main-is:           Codec/Encryption/Historical/Caesar/CommandDecode.hs
+  main-is: Codec/Encryption/Historical/Caesar/CommandDecode.hs
   build-depends: base, containers, safe
 
+
 library
-  build-depends: base, containers
+  build-depends: base, containers, bytestring, split
   exposed-modules:
     Codec.Encryption.Historical.Caesar.Implementation,
     Codec.Encryption.Historical.Caesar.Analysis
+    Codec.Encryption.Historical.XOR.Implementation,
+    Codec.Encryption.Historical.XOR.Analysis,
+    Codec.Encryption.Historical.Utilities.Histogram
 
 Test-Suite TestSuite
     type:           exitcode-stdio-1.0
     main-is:        TestSuite.hs
     build-depends:  base,
                     containers,
+                    split,
+                    bytestring,
                     test-framework-hunit,
                     test-framework,
                     test-framework-quickcheck2,

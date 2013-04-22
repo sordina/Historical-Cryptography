@@ -3,6 +3,7 @@ module Main where
 
 import Codec.Encryption.Historical.Caesar.Analysis
 import Codec.Encryption.Historical.Caesar.Implementation
+import Codec.Encryption.Historical.Utilities.Histogram
 import System.Environment
 
 main :: IO ()
