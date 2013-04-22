@@ -7,6 +7,7 @@ module Codec.Encryption.Historical.XOR.Analysis
 -- Module to Analyse
 import Codec.Encryption.Historical.XOR.Implementation
 import Codec.Encryption.Historical.Utilities.Histogram
+import Data.Word
 import Data.Char
 import Data.Ord
 import Data.List
@@ -21,13 +22,13 @@ crack mkl h cypher = xor_decode key cypher
     klen    = crack_key_length mkl h cypher
 
 crackPart :: Histogram Char -> String -> Char
-crackPart h cypher = chr $ head $ sortBy (comparing best) solutions
+crackPart h cypher = chr $ fromIntegral $ head $ sortBy (comparing best) solutions
   where
-    best :: Int -> Float
-    best n = histogramDelta h (histogram (xor_encode [chr n] cypher))
+    best :: Word8 -> Float
+    best n = histogramDelta h (histogram (xor_decode [chr $ fromIntegral n] cypher))
 
-    solutions :: [Int]
-    solutions = [0..255]
+    solutions :: [Word8]
+    solutions = [65..122] -- [minBound..] -- Why does this work???
 
 crack_key_length :: Int -> Histogram a -> String -> Int
 crack_key_length keyLen h s = head $ sortBy (comparing best) [1..keyLen]

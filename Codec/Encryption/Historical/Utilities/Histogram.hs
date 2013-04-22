@@ -23,11 +23,10 @@ rotate :: [(a,b)] -> [(a,b)]
 rotate l = zip (drop 1 ks ++ take 1 ks) (map snd l) where ks = map fst l
 
 histogramDelta :: (Eq a, Ord a) => Histogram a -> Histogram a -> Float
-histogramDelta a b = result
+histogramDelta a b = sum $ map (**2) $ catMaybes deltas
   where
     keys   = map fst a -- Really only need one set since we're after the intersection of keys
     deltas = map (\x -> liftM2 (-) (lookup x a) (lookup x b)) keys
-    result = sum $ map (**2) $ catMaybes deltas
 
 histogram :: (Eq a, Ord a) => [a] -> Histogram a
 histogram = normalize . simpleHistogram
