@@ -7,11 +7,10 @@ module Codec.Encryption.Historical.XOR.Analysis
 -- Module to Analyse
 import Codec.Encryption.Historical.XOR.Implementation
 import Codec.Encryption.Historical.Utilities.Histogram
-import Data.Word
-import Data.Char
 import Data.Ord
 import Data.List
 import Data.List.Split
+import qualified Data.ByteString.Internal as B
 
 -- TODO: Take advantage of some of the properties of XOR to crack this better
 crack :: Int -> Histogram Char -> String -> String
@@ -22,13 +21,13 @@ crack mkl h cypher = xor_decode key cypher
     klen    = crack_key_length mkl h cypher
 
 crackPart :: Histogram Char -> String -> Char
-crackPart h cypher = chr $ fromIntegral $ head $ sortBy (comparing best) solutions
+crackPart h cypher = head $ sortBy (comparing best) solutions
   where
-    best :: Word8 -> Float
-    best n = histogramDelta h (histogram (xor_decode [chr $ fromIntegral n] cypher))
+    best :: Char -> Float
+    best c = histogramDelta h (histogram (xor_decode [c] cypher))
 
-    solutions :: [Word8]
-    solutions = [65..122] -- [minBound..] -- Why does this work???
+    solutions :: String
+    solutions = map B.w2c [minBound..maxBound]
 
 crack_key_length :: Int -> Histogram a -> String -> Int
 crack_key_length keyLen h s = head $ sortBy (comparing best) [1..keyLen]

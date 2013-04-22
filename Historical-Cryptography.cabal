@@ -16,15 +16,15 @@ cabal-version:       >=1.8
 
 executable crack_xor
   main-is: Codec/Encryption/Historical/XOR/CommandCrack.hs
-  build-depends: base, containers, bytestring, split
+  build-depends: base, containers, bytestring, split, word8
 
 executable encode_xor
   main-is: Codec/Encryption/Historical/XOR/CommandXOR.hs
-  build-depends: base, containers, bytestring, split
+  build-depends: base, containers, bytestring, split, word8
 
 executable decode_xor
   main-is: Codec/Encryption/Historical/XOR/CommandXOR.hs
-  build-depends: base, containers, bytestring, split
+  build-depends: base, containers, bytestring, split, word8
 
 
 executable crack_caesar
@@ -41,7 +41,7 @@ executable decode_caesar
 
 
 library
-  build-depends: base, containers, bytestring, split
+  build-depends: base, word8, containers, bytestring, split
   exposed-modules:
     Codec.Encryption.Historical.Caesar.Implementation,
     Codec.Encryption.Historical.Caesar.Analysis
@@ -53,6 +53,7 @@ Test-Suite TestSuite
     type:           exitcode-stdio-1.0
     main-is:        TestSuite.hs
     build-depends:  base,
+                    word8,
                     containers,
                     split,
                     bytestring,

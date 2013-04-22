@@ -13,6 +13,8 @@ resolve :: [String] -> IO ()
 resolve ("--help":_) = usage
 resolve ("-h":    _) = usage
 
+resolve [] = resolve ["/usr/share/dict/snow_white_abridged.txt"]
+
 resolve [f] = resolve ["100",f]
 
 resolve [l,f] = do
@@ -24,8 +26,6 @@ resolve [l,f] = do
     decrypted       = crack (read l) histo cypher
 
   putStrLn $ decrypted
-
-resolve [] = resolve ["/usr/share/dict/snow_white_abridged.txt"]
 
 resolve _ = usage
 

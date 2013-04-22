@@ -57,6 +57,7 @@ To run the test-suite, just call `make test`.
 * [History of Cryptography](http://en.wikipedia.org/wiki/History_of_cryptography)
 * [Classical Cipher       ](http://en.wikipedia.org/wiki/Classical_cipher)
 * [Caesar Cipher          ](http://en.wikipedia.org/wiki/Caesar_cipher)
+* [XOR Cipher             ](http://en.wikipedia.org/wiki/XOR_cipher)
 
 ## Corpus Sources
 

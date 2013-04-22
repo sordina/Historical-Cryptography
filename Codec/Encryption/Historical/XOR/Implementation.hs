@@ -12,7 +12,7 @@ module Codec.Encryption.Historical.XOR.Implementation
 where
 
 import Data.Bits
-import Data.ByteString.Internal
+import qualified Data.ByteString.Internal as B
 
 data XOR = XOR { encode :: String -> String
                , decode :: String -> String }
@@ -23,10 +23,10 @@ xor_encode key = encode (xor_algorithm key)
 xor_decode :: String -> String -> String
 xor_decode key = decode (xor_algorithm key)
 
-xor_algorithm :: [Char] -> XOR
+xor_algorithm :: String -> XOR
 xor_algorithm key = XOR enc enc
   where
-    enc plain = unpackChars $ packBytes $ zipWith xor keyb plainb
-      where
-        keyb   = cycle $ unpackBytes $ packChars key
-        plainb =         unpackBytes $ packChars plain
+    enc plain = zipWith
+                (\x y -> B.w2c $ xor (B.c2w x) (B.c2w y))
+                (cycle key)
+                plain
