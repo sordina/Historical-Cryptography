@@ -60,5 +60,5 @@ Test-Suite TestSuite
                     test-framework-hunit,
                     test-framework,
                     test-framework-quickcheck2,
-                    QuickCheck == 2.5.1.1,
+                    QuickCheck >= 2.5,
                     HUnit

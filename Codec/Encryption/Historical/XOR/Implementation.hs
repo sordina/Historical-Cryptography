@@ -21,7 +21,7 @@ xor_encode :: String -> String -> String
 xor_encode key = encode (xor_algorithm key)
 
 xor_decode :: String -> String -> String
-xor_decode key = decode (xor_algorithm key)
+xor_decode = xor_encode
 
 xor_algorithm :: String -> XOR
 xor_algorithm key = XOR enc enc
